@@ -5,13 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
 
-
-
-</script>
 </head>
 <body>
-http://localhost:8080/jspPro/NewFile.jsp
+ http://localhost:8080/jspPro/NewFile.jsp
 </body>
 </html>
