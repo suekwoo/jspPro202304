@@ -21,7 +21,7 @@
   <param-value>true</param-value>  
   </context-param>
  
-  
+ <!--  
   <error-page>
     <error-code>404</error-code>
      <location>/ch05_exception/error404.jsp</location>
@@ -35,7 +35,7 @@
      <location>/ch05_exception/errorNumberFormat.jsp</location>
   </error-page>
 
- 
+  -->
 
 
 
