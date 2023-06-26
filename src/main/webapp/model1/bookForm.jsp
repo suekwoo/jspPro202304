@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="model1.Book"%>
 <%@page import="model1.BookDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -40,8 +41,6 @@
 
  */
 
-
-
   BookDao  bd = new BookDao();
   //bd.getConnection();
   request.setCharacterEncoding("utf-8");
@@ -49,6 +48,7 @@
   String title = request.getParameter("title");
   String content = request.getParameter("content");
   int num=0;
+  
   if (writer!=null) {
   Book b = new Book(writer, title, content);
   
@@ -57,5 +57,32 @@
   
   }
   
+  List<Book> li = bd.selectBook();
+  
 %><%=num%>개 입력 되었음
+
+<div class="w3-container">
+<table class="w3-table-all  w3-striped " 
+style="color:#000">
+<tbody><tr class="w3-green">
+ <th>입력일</th>  <th>작성자</th>   <th>제목</th>    <th>내용</th>
+</tr></tbody><tbody>
+<%  for (Book b : li)  {%>
+<tr>
+<td><%=b.getWriter() %></td>
+<td><%=b.getTitle() %></td>
+<td><%=b.getContent() %></td>
+<td><%=b.getRdate() %></td>
+</tr>
+<% } %>
+</tbody>
+	</table>
+
+</div>
 </body></html>
+
+
+
+
+
+

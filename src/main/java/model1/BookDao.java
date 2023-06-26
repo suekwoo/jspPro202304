@@ -3,7 +3,10 @@ package model1;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookDao {
 
@@ -26,14 +29,43 @@ public class BookDao {
 	}
 	
 	public int insertBook(Book b) throws SQLException {
-		Connection con = getConnection();
+		Connection con = getConnection(); //1
 		
-		PreparedStatement pstmt 
+		PreparedStatement pstmt //2
 		= con.prepareStatement("insert into book values (?,?,?, sysdate)");
 		pstmt.setString(1, b.getWriter());
 		pstmt.setString(2, b.getTitle());
 		pstmt.setString(3, b.getContent());
-		return pstmt.executeUpdate();
+		return pstmt.executeUpdate();  //3 dml시 실행
 	}
+	
+	public List<Book> selectBook() throws SQLException {
+		Connection con = getConnection();  //1
+		PreparedStatement pstmt 
+				= con.prepareStatement("select * from book order by rdate desc");  //2
+		ResultSet rs = pstmt.executeQuery(); //3. 실행
+		List<Book> li = new  ArrayList<>();
+		
+		while(rs.next()) {
+			Book b = new Book(rs.getString("writer"),  //1개의 row 
+					rs.getString("title"),
+					rs.getString("content"));
+			b.setRdate(rs.getDate("rdate"));
+			
+			li.add(b);
+			
+		}
+		return li;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
