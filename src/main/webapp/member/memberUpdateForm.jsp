@@ -1,5 +1,5 @@
-<%@page import="member.MemberDao"%>
 <%@page import="member.Member"%>
+<%@page import="member.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="head.jsp"%>
@@ -12,11 +12,11 @@
 <body>
 	<%
 	String id = (String) session.getAttribute("id");
-	if (id != null & !id.equals("")) {
+	if (id != null && !id.equals("")) {
 		Member m = new MemberDao().oneMember(id);
 	%>
 
-	<form class="w3-container" name="f" action="joinPro.jsp" method="post">
+	<form class="w3-container" name="f" action="memberUpdatePro.jsp" method="post">
 		<table class="w3-table-all">
 			<caption>회원정보수정</caption>
 			<tr>

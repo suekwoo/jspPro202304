@@ -1,5 +1,5 @@
-<%@page import="member.MemberDao"%>
 <%@page import="member.Member"%>
+<%@page import="member.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include  file="head.jsp" %>
@@ -25,8 +25,8 @@ Member m = new MemberDao().oneMember(id);
 <tr>
 				<td colspan="2" class="w3-center">
 				<a class="w3-button w3-black" href="memberUpdateForm.jsp">회원정보수정</a>
-				<a class="w3-button w3-black" href="memberDelete.jsp">회원탈퇴</a>
-				<a class="w3-button w3-black" href="memberPassUpdate.jsp">비밀번호수정</a>
+				<a class="w3-button w3-black" href="memberDeleteForm.jsp">회원탈퇴</a>
+				<a class="w3-button w3-black" href="memberPassForm.jsp">비밀번호수정</a>
 				</td>
 			</tr>	
 

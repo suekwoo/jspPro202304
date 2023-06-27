@@ -18,9 +18,18 @@
      
       <a href="memberInfo.jsp" class="w3-bar-item w3-button w3-hide-small">
       회원정보확인[<%=session.getAttribute("id") %>]</a>
-     <a href="loginForm.jsp" class="w3-bar-item w3-button w3-hide-small">로그아웃</a>
+     <a href="logout.jsp" class="w3-bar-item w3-button w3-hide-small">로그아웃</a>
      
  <%} %>
+ <%
+ String admin = (String)session.getAttribute("id");
+ if (admin!=null && admin.equals("admin")) { 
+ %>
+ 
+ <a href="memberList.jsp" class="w3-bar-item w3-button w3-hide-small">회원리스트</a>
+ 
+ <% } %>
+ 
     <div class="w3-dropdown-hover">
       <button class="w3-button">
         Dropdown <i class="fa fa-caret-down"></i>

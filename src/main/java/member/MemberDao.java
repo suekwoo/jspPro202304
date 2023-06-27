@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model1.Book;
 
@@ -89,5 +91,100 @@ public class MemberDao {
 		}
 		return null;
 	}
+	
+	public int updateMember(Member m) {
+		Connection con = getConnection(); // 1
 
+		PreparedStatement pstmt;
+		String sql = "update member set name=?, gender=?, tel=?, "
+				+ " email=?, picture=? where id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getName());
+			pstmt.setInt(2, m.getGender());
+			pstmt.setString(3, m.getTel());
+			pstmt.setString(4, m.getEmail());
+			pstmt.setString(5, m.getPicture());
+			pstmt.setString(6, m.getId());
+			
+			
+			return pstmt.executeUpdate(); // 3 dml시 실행
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return 0;
+
+	}
+	
+	public int deleteMember(String id) {
+		Connection con = getConnection(); // 1
+
+		PreparedStatement pstmt;
+		String sql = "delete from member where id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			return pstmt.executeUpdate(); // 3 dml시 실행
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+
+	}
+	
+	
+	public int changePass(String id, String newPass) {
+		Connection con = getConnection(); // 1
+
+		PreparedStatement pstmt;
+		String sql = "update member set pass=?  where id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, newPass);
+			pstmt.setString(2, id);
+			return pstmt.executeUpdate(); // 3 dml시 실행
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+
+	}
+	
+	
+	public List<Member> memberList() {
+		Connection con = getConnection(); // 1
+		PreparedStatement pstmt;
+		ResultSet rs=null;
+		List<Member> li = new ArrayList<>();
+		try {
+			pstmt = con.prepareStatement("select * from member");
+			rs=pstmt.executeQuery() ;
+			while (rs.next()) {
+				Member m = new Member();
+				m.setId(rs.getString("id"));
+				m.setPass(rs.getString("pass"));
+				m.setName(rs.getString("name"));
+				m.setGender(rs.getInt("gender"));
+				m.setTel(rs.getString("tel"));
+				m.setEmail(rs.getString("email"));
+				m.setPicture(rs.getString("picture"));
+				li.add(m);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return li;
+	}
+	
 }  //end class
