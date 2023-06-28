@@ -1,7 +1,7 @@
-<%@page import="ch09.Student"%>
+<%@page import="ch07.Student"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- /WebContent/el/elEx4.jsp --%>    
+ 
 <!DOCTYPE html>
 <html>
 <head>

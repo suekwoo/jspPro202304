@@ -12,23 +12,16 @@
 </head>
 <body>
 <%
-   //요청파라미터의 인코딩방식을 설정 : 
-   // UTF-8 인코딩 방식 변경 => method=post 인경우만 처리됨.
-   request.setCharacterEncoding("UTF-8");
-   // <input type="text" name="name" > : name의 속성값이 파리미터 이름임.
-   String name = request.getParameter("name");
-   String age = request.getParameter("age");
-   String gender = request.getParameter("gender");
-   String hobby = request.getParameter("hobby");
-   String year = request.getParameter("year");
-   String test = request.getParameter("test");
+request.setCharacterEncoding("utf-8");
 %>
-이름:<%=name %><br>
-나이:<%=age %><br>
-성별:<%=gender.equals("1")?"남":"여" %><br>
-취미:<%=hobby%><br>
-년도:<%=year%><br>
-test: <%=test %>
+이름 : ${param.name}<br>
+age : ${param.age}<br>
+gender : ${param.gender}<br>
+hobby : ${param.hobby}<br>
+test : ${param.test}<br>
+year : ${param.year}<br>
+<h2>요청파라미터에 저장된 모든 값 조회하기 </h2>
+<h3>취미 :</h3>
 
 <%
 String[] hobbies = request.getParameterValues("hobby");
